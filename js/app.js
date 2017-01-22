@@ -80,8 +80,18 @@ function init() {
         $(this).attr('href', document.myHref).attr("download", "vase-" + vaseNum + ".stl");
     })
 
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        webGLRenderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    
+    window.addEventListener( 'resize', onWindowResize, false );
+    
     //render
     render();
 
 }
+
 window.onload = init;

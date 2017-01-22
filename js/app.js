@@ -10,10 +10,10 @@ function init() {
         latheMesh,
         latheGeometry,
         vaseNum = 0,
-        gui = new dat.GUI(),
-        cameraControls = new THREE.OrbitControls(camera),
         isWireframe = true,
-        webGLRenderer = new THREE.WebGLRenderer();
+        webGLRenderer = new THREE.WebGLRenderer(),
+        gui = new dat.GUI(),
+        cameraControls = new THREE.OrbitControls(camera, webGLRenderer.domElement) ;
 
     //functions
     function redraw() {

@@ -10,10 +10,10 @@ function init() {
         latheMesh,
         latheGeometry,
         vaseNum = 0,
-        gui = new dat.GUI(),
-        cameraControls = new THREE.OrbitControls(camera),
         isWireframe = true,
-        webGLRenderer = new THREE.WebGLRenderer();
+        webGLRenderer = new THREE.WebGLRenderer(),
+        gui = new dat.GUI(),
+        cameraControls = new THREE.OrbitControls(camera, webGLRenderer.domElement) ;
 
     //functions
     function redraw() {
@@ -80,8 +80,18 @@ function init() {
         $(this).attr('href', document.myHref).attr("download", "vase-" + vaseNum + ".stl");
     })
 
+    function onWindowResize() {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+
+        webGLRenderer.setSize( window.innerWidth, window.innerHeight );
+    }
+    
+    window.addEventListener( 'resize', onWindowResize, false );
+    
     //render
     render();
 
 }
+
 window.onload = init;
